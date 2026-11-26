@@ -108,3 +108,31 @@ backend/
 PostgreSQL, SQLAlchemy models, Alembic migrations, authentication and authorization, product/cart/order APIs, payments, integration testing, AI features, and production configuration.
 
 Return to the [project overview](../README.md).
+
+## Episode 015 — FastAPI GET APIs, Parameters & Testing
+
+### Install application dependencies (from repository root)
+
+.\backend\.venv\Scripts\python.exe -m pip install -r .\backend\requirements.txt
+
+### Install development/test dependencies (from repository root)
+
+.\backend\.venv\Scripts\python.exe -m pip install -r .\backend\requirements-dev.txt
+
+### Start API (from repository root)
+
+.\backend\.venv\Scripts\python.exe -m uvicorn app.main:app --app-dir backend --reload --host 127.0.0.1 --port 8000
+
+### Test API (separate terminal)
+
+.\backend\.venv\Scripts\python.exe -m pytest -v backend/tests
+
+### API endpoints
+
+- GET /health: application status
+- GET /about: project name and version
+- GET /products: in-memory sample catalog; category, in_stock and limit query parameters
+- GET /products/{product_id}: one product; HTTP 404 if missing, HTTP 422 if path input invalid
+- /docs: interactive OpenAPI (Swagger UI)
+
+The product list is in-memory demo data, not PostgreSQL or production persistence.
